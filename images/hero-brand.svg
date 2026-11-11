@@ -1,0 +1,40 @@
+<!-- hero-brand.svg — 대문 배너 / 대시보드 상단 그림 (원본 일러스트, 글자 없음 → 어떤 글꼴 환경에서도 깨지지 않음)
+     구성: 네이비 그라데이션 배경 + 격자 + 인증별 간트 막대(준비 파랑→기관 심사 주황→피드백 보라→발급 초록, 앱 간트와 같은 색)
+     + 오른쪽 큰 갱신 링/체크(로고 모티프) + 점 3개(상태 신호: 빨강·주황·초록).
+     타사 로고·사진을 쓰지 않아 외부 공개 시 저작권/상표 문제가 없음. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="인증 갱신 일정을 보여 주는 간트 그림">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0A2540"/><stop offset=".6" stop-color="#0C3560"/><stop offset="1" stop-color="#0A5A9C"/></linearGradient><radialGradient id="glow" cx=".82" cy=".45" r=".5"><stop offset="0" stop-color="#2DD4BF" stop-opacity=".28"/><stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/></radialGradient><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" fill="none" stroke="#fff" stroke-opacity=".06"/></pattern></defs>
+<rect width="1680" height="560" fill="url(#bg)"/><rect width="1680" height="560" fill="url(#grid)"/><rect width="1680" height="560" fill="url(#glow)"/>
+<line x1="660" y1="90" x2="660" y2="470" stroke="#2DD4BF" stroke-width="2" stroke-dasharray="6 6" opacity=".9"/><rect x="632" y="62" width="56" height="24" rx="12" fill="#2DD4BF"/><rect x="646" y="72" width="28" height="4" rx="2" fill="#0A2540"/>
+<rect x="60" y="136" width="70" height="8" rx="4" fill="#fff" opacity=".18"/>
+<rect x="240" y="130" width="300" height="22" rx="11" fill="#2A78D6" opacity=".95"/>
+<rect x="550" y="130" width="260" height="22" rx="11" fill="#EB6834" opacity=".95"/>
+<rect x="820" y="130" width="120" height="22" rx="11" fill="#8C5CD1" opacity=".95"/>
+<rect x="950" y="130" width="150" height="22" rx="11" fill="#1BAF7A" opacity=".95"/>
+<rect x="60" y="206" width="70" height="8" rx="4" fill="#fff" opacity=".18"/>
+<rect x="270" y="200" width="260" height="22" rx="11" fill="#2A78D6" opacity=".95"/>
+<rect x="540" y="200" width="300" height="22" rx="11" fill="#EB6834" opacity=".95"/>
+<rect x="850" y="200" width="140" height="22" rx="11" fill="#8C5CD1" opacity=".95"/>
+<rect x="1000" y="200" width="130" height="22" rx="11" fill="#1BAF7A" opacity=".95"/>
+<rect x="60" y="276" width="70" height="8" rx="4" fill="#fff" opacity=".18"/>
+<rect x="180" y="270" width="220" height="22" rx="11" fill="#2A78D6" opacity=".95"/>
+<rect x="410" y="270" width="240" height="22" rx="11" fill="#EB6834" opacity=".95"/>
+<rect x="660" y="270" width="110" height="22" rx="11" fill="#8C5CD1" opacity=".95"/>
+<rect x="780" y="270" width="140" height="22" rx="11" fill="#1BAF7A" opacity=".95"/>
+<rect x="60" y="346" width="70" height="8" rx="4" fill="#fff" opacity=".18"/>
+<rect x="250" y="340" width="300" height="22" rx="11" fill="#2A78D6" opacity=".95"/>
+<rect x="560" y="340" width="280" height="22" rx="11" fill="#EB6834" opacity=".95"/>
+<rect x="850" y="340" width="150" height="22" rx="11" fill="#8C5CD1" opacity=".95"/>
+<rect x="1010" y="340" width="120" height="22" rx="11" fill="#1BAF7A" opacity=".95"/>
+<rect x="60" y="416" width="70" height="8" rx="4" fill="#fff" opacity=".18"/>
+<rect x="300" y="410" width="260" height="22" rx="11" fill="#2A78D6" opacity=".95"/>
+<rect x="570" y="410" width="260" height="22" rx="11" fill="#EB6834" opacity=".95"/>
+<rect x="840" y="410" width="120" height="22" rx="11" fill="#8C5CD1" opacity=".95"/>
+<rect x="970" y="410" width="140" height="22" rx="11" fill="#1BAF7A" opacity=".95"/>
+<circle cx="84" cy="40" r="7" fill="#E5484D"/>
+<circle cx="110" cy="40" r="7" fill="#F5A524"/>
+<circle cx="136" cy="40" r="7" fill="#2FBF71"/>
+<g transform="translate(1370 290)"><circle r="184" fill="#fff" opacity=".04"/><circle r="150" fill="none" stroke="#fff" stroke-opacity=".14" stroke-width="22"/><circle r="150" fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round" stroke-dasharray="706.9 235.6" transform="rotate(-50)"/>
+<polygon points="-86.6,-130.1 -150.7,-116.0 -89.4,-64.6" fill="#fff"/>
+<polyline points="-62,6 -22,48 66,-52" fill="none" stroke="#2DD4BF" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/></g>
+</svg>

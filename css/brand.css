@@ -1,0 +1,101 @@
+/* ============================================================================
+   brand.css — 브랜드 디자인 레이어 (2026-11-11 신규, 디자인 개선 1차)
+   ----------------------------------------------------------------------------
+   [이 파일이 하는 일]  기존 style.css(도구 화면) · auth.css(로그인 대문)를 "고치지 않고" 위에 덧입혀
+                        색·로고·여백·그림자·움직임만 바꿉니다. index.html 에서 두 파일 "뒤에" 불러옵니다.
+   [왜 따로?]           auth.css 는 정본이 data10-00/kit/auth 에 있어 사본을 직접 고치지 말라는 약속이 있습니다.
+                        직접 고치면 다음 키트 갱신 때 덮어써져 디자인이 사라집니다 → 덧입히기 방식으로 보호.
+   [되돌리는 법]        index.html 의 brand.css <link> 한 줄만 지우면 이전 모양으로 돌아갑니다.
+   [색 규칙]            네이비(바탕·신뢰) / 오션블루(행동 단추) / 틸(강조·체크) — 상태 신호색(빨강·주황·초록…)은
+                        의미가 있으므로 style.css 의 .st-* 를 그대로 둡니다. 브랜드색을 신호색과 섞지 않는 것이 핵심.
+   [색을 바꾸고 싶다면] 아래 :root 의 --brand-* 값만 바꾸면 도구 화면은 전부 따라옵니다.
+                        대문(로그인 전) 색은 js/auth-config.js 의 landing.colors 에서 정합니다(스크립트가 인라인으로 넣기 때문).
+   ========================================================================== */
+:root {
+  --brand-navy: #0a2540;      /* 가장 어두운 바탕: 사이드바·대문 상단 */
+  --brand-navy-2: #0c3560;    /* 그라데이션 중간 */
+  --brand-ocean: #0a66b2;     /* 대표색: 행동 단추·링크 */
+  --brand-ocean-d: #084e8c;   /* 눌림/호버 */
+  --brand-teal: #14b8a6;      /* 강조색: 활성 메뉴 막대·체크 (흰 글자 대비가 약해 "글자색"으론 쓰지 않음) */
+  --brand-teal-l: #2dd4bf;    /* 어두운 바탕 위 강조 */
+  --brand-grad: linear-gradient(135deg, #12457a 0%, #0a66b2 100%);   /* 로고·주요 단추 공통 그라데이션 */
+  --shadow-1: 0 1px 2px rgba(10, 37, 64, .06), 0 4px 12px rgba(10, 37, 64, .06);   /* 카드 기본 */
+  --shadow-2: 0 2px 4px rgba(10, 37, 64, .08), 0 12px 28px rgba(10, 37, 64, .12);  /* 마우스 올렸을 때 */
+}
+
+/* ── 0. 공통: 키보드 포커스를 눈에 띄게(접근성), 움직임 줄이기 설정 존중 ───────────────── */
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--brand-ocean) 55%, transparent); outline-offset: 2px; border-radius: 6px; }
+.side :focus-visible { outline-color: var(--brand-teal-l); }   /* 어두운 사이드바 위에서는 밝은 틸 */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+
+/* ── 1. 도구 화면(로그인 후) ─────────────────────────────────────────────────── */
+/* 1-1 사이드바: 배경 그라데이션·활성 메뉴 왼쪽 막대는 로그인 키트(auth.css 의 .kit-shell)가 이미 그려 줍니다 —
+        색은 js/auth-config.js 의 navy/navy2/accent(=틸)를 따르므로 여기서 또 칠하지 않습니다(이중 막대 방지). 여기서는 로고만 다룸 */
+.brand { padding-bottom: 20px; margin-bottom: 6px; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.brand-mark { flex: none; width: 40px; height: 40px; display: block; }          /* index.html 에서 글자 "CT" 대신 <img> 를 넣음 */
+.brand-mark img { width: 100%; height: 100%; display: block; border-radius: 11px; box-shadow: 0 4px 14px rgba(0, 0, 0, .3); }
+.brand-name { letter-spacing: -.01em; }
+/* 1-2 메뉴(모바일 개선): 기존엔 키트 규칙(.kit-shell #nav = 세로)이 style.css 의 "좁은 화면은 가로" 규칙을 이겨서
+        휴대폰에서 메뉴 12줄이 화면 절반 이상을 차지했음 → 1023px 이하에서는 한 줄 가로 스크롤 메뉴로 */
+.nav a[aria-current="page"] .no { color: var(--brand-teal-l); }
+@media (max-width: 1023px) {
+  .kit-shell #nav { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: 6px; padding-bottom: 6px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+  .kit-shell #nav a { flex: none; display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; white-space: nowrap; scroll-snap-align: start; }
+  .kit-shell #nav a .s { display: none; }
+  .kit-nav { flex-direction: row; margin-top: 6px; padding-top: 8px; }
+  .kit-nav-t { display: none; }
+  .brand { padding-bottom: 12px; }
+}
+/* 1-3 상단 바 · 카드 · 타일: 얇은 그림자로 면을 분리 */
+.topbar { box-shadow: 0 1px 0 var(--line), 0 6px 16px rgba(10, 37, 64, .04); }
+.card, .tile, .fig { box-shadow: var(--shadow-1); }
+.tile { transition: box-shadow .2s, transform .2s; }
+.tile:hover { box-shadow: var(--shadow-2); transform: translateY(-1px); }
+.tile .v { letter-spacing: -.01em; }
+/* 1-4 단추: 주요 단추에 브랜드 그라데이션, 눌림 피드백 */
+.btn { transition: border-color .15s, box-shadow .15s, transform .05s; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--brand-grad); border-color: var(--brand-ocean-d); box-shadow: 0 4px 12px rgba(10, 102, 178, .28); }
+.btn-primary:hover { background: linear-gradient(135deg, #0f3a69 0%, #084e8c 100%); }
+/* 1-5 표: 머리행 색을 브랜드 톤으로, 행에 마우스를 올리면 살짝 강조 */
+table.list th { background: #e9f0f8; color: #123a66; }
+table.list tbody tr:hover td { background: #f5f9fd; }
+table.list tr.differs:hover td { background: #fff5e0; }
+/* 1-6 페이지 제목 위의 단계 표시(예: ① ② ③)를 브랜드 틸 밑줄 라벨로 */
+.stage { display: inline-block; color: var(--brand-ocean); padding-bottom: 2px; border-bottom: 2px solid var(--brand-teal); }
+/* 1-7 시작 그림(대시보드·가져오기 맨 위): 새 일러스트 위에 글자를 얹음(app.js startHero 참고) */
+.start-hero { position: relative; background: var(--brand-navy); box-shadow: var(--shadow-2); }
+.start-hero img { width: 100%; max-height: clamp(150px, 30vh, 300px); object-fit: cover; object-position: left center; }
+/* 글자가 간트 막대와 겹쳐 읽기 어려워서, 왼쪽에 네이비 그라데이션 막을 깔아 글자 대비를 확보(검증: 흰 글자 대비 약 12:1) */
+.start-hero::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, rgba(10, 37, 64, .96) 0%, rgba(10, 37, 64, .88) 34%, rgba(10, 37, 64, 0) 68%); }
+.start-hero .hero-copy { z-index: 2; }
+.start-hero .hero-copy { position: absolute; left: clamp(16px, 4vw, 44px); top: 50%; transform: translateY(-50%); color: #fff; max-width: min(520px, 62%); text-shadow: 0 2px 14px rgba(5, 15, 30, .55); }
+.start-hero .hero-copy b { display: block; font-size: clamp(1.15rem, 2.6vw, 2rem); line-height: 1.2; letter-spacing: -.02em; }
+.start-hero .hero-copy span { display: block; margin-top: 6px; font-size: clamp(.78rem, 1.3vw, .98rem); color: #d3e6f7; }
+@media (max-width: 639px) { .start-hero .hero-copy span { display: none; } }   /* 휴대폰: 부제는 숨겨 그림을 가리지 않음 */
+/* 1-8 푸터 */
+.site-footer { background: #f8fafc; }
+
+/* ── 2. 로그인 전 대문(auth.css 의 .hp-*) 덧입히기 ───────────────────────────── */
+/* 2-1 상단 메뉴의 작은 아이콘 상자 → 서비스 로고. (kit 의 inline SVG 아이콘은 감춤) */
+.hp-mark { width: 36px; height: 36px; border-radius: 10px; background: url("../images/logo.svg") center / contain no-repeat; box-shadow: 0 4px 12px rgba(10, 37, 64, .22); }
+.hp-mark .hp-mark-ic { display: none; }
+.hp-tool-t { letter-spacing: -.01em; }
+/* 2-2 주요 단추 */
+.hp-primary { background: var(--brand-grad); box-shadow: 0 8px 22px rgba(10, 102, 178, .35); }
+.hp-primary:hover { background: linear-gradient(135deg, #0f3a69, #084e8c); }
+/* 2-3 배너 그림: 아래쪽을 소개 영역 색으로 자연스럽게 이어 붙임 */
+.hp-banner { position: relative; background: var(--brand-navy); }
+.hp-banner::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; pointer-events: none; background: linear-gradient(180deg, transparent, var(--ag-navy, #0a2540)); }
+.hp-banner img { max-height: 62vh; width: 100%; object-fit: cover; }   /* 배너 비율(3:1)에 맞춰 너무 커지지 않게 */
+/* 2-4 소개/목표/기능 카드: 숫자·아이콘에 틸 포인트 */
+.hp-goal { border-top: 3px solid var(--brand-teal); }
+.hp-goal-n { color: var(--brand-ocean); }
+.hp-feat-ic { background: linear-gradient(135deg, #e6f4fb, #dff7f3); color: var(--brand-ocean); }
+.hp-feat:hover { border-color: var(--brand-teal); }
+.hp-step-n { background: var(--brand-grad); color: #fff; }
+/* 2-5 로그인 창(모달) 카드 그림자 */
+.hp-dialog { box-shadow: 0 30px 80px rgba(5, 15, 30, .45); }
+
+/* ── 3. 인쇄: 장식 요소 제거(보고서 PDF 가 깔끔하도록) ───────────────────────── */
+@media print { .card, .tile, .fig, .start-hero { box-shadow: none !important; } .btn-primary { background: #fff !important; color: #000 !important; box-shadow: none !important; } }
